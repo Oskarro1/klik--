@@ -31,7 +31,7 @@
     </head>
     <body>
         <button id="przycisk" type="button" onclick="oblicz()">klik</button><br>
-        <button class="button" id="przyciskk" type="button" onclick="usun()">Usuń wszytkie dane</button><br>
+        <button class="button" id="przyciskk" type="button" onclick="zeruj()">Wyzeruj</button><br>
 
         <button class="button" id="kupSkin1" type="button" onclick="skin1()">Kup skina <br>Koszt = 1000</button><br>
         <button class="button" id="kupSkin2" type="button" onclick="skin2()">Kup skina <br>Koszt = 10000</button><br>
@@ -43,41 +43,19 @@
 
 
         <script>
-            //Bierzemy chajs z zapisu
-            a = parseFloat(localStorage.getItem("money"));
-            b = parseFloat(a + 0)
-            var klik_dane_numer = b;
-            console.log('Obecnie masz '+klik_dane_numer+' klików');
 
-
-            //Ile obecnie posiadasz mamony
-            var klik = 1 + klik_dane_numer;
-
-            var kosztUlepszenia = 10;   //Podstawowy koszt pierwszego rebirtha
+            var klik = 0; 
             var klikPrzyrost = 1;
+            var kosztUlepszenia = 10;
             var klikSkin1 = 0;
             var klikSkin2 = 0;
 
-            //b = typeof(klik_dane_numer);
-            //c = typeof(klik);
-
-            //Ile masz mamony
-            var money = klik_dane_numer;
-
-
-            //console.log(' klik_dane_numer  '+b + ' klik '+c);
-
-            //Główna funkcja klik = money
+            //Główna funkcja klik = mamona
             function oblicz() {
                 if(klik>-1) {
-                    klik =  klik + klikPrzyrost + klikSkin1 + klikSkin2;
+                    klik += klikPrzyrost + klikSkin1 + klikSkin2;
                     document.getElementById('przycisk').innerHTML = klik;
-
-                    //Zapisujemy ile mamy chajsu
-                    var klik_dane = JSON.stringify(klik);
-                    localStorage.setItem("money", klik);
                 }
-
             }
 
             //Funkcja wyzerowania licznika
@@ -95,19 +73,8 @@
                     klikPrzyrost += 1.5;
                     kosztUlepszenia += kosztUlepszenia - ((kosztUlepszenia/100)*25);
                     document.getElementById('kosztUleszenie').innerHTML = kosztUlepszenia;
-
-                    location.reload();
                 } 
             }
-
-            function usun() {
-                i = 1
-                if(i == 1) {
-                localStorage.clear();
-                location.reload();
-                }
-            }
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
