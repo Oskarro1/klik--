@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Clicker Klik++</title>
+        <style>
+            html {
+                background-color: beige;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            #przycisk {
+                overflow-wrap: break-word;
+
+                border-radius: 10px;
+                height: 50px;
+                width: 100%;
+                background-color: white;
+                color: black;
+                border-color: white;
+                
+                font-size: inherit;
+            }
+            
+            
+            #przycisk:active{
+                border-color: black;
+                color: white;
+                background-color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="przycisk" type="button" onclick="oblicz()">klik</button><br>
+        <button class="button" id="przyciskk" type="button" onclick="zeruj()">Wyzeruj</button><br>
+
+        <button class="button" id="kupSkin1" type="button" onclick="skin1()">Kup skina <br>Koszt = 1000</button><br>
+        <button class="button" id="kupSkin2" type="button" onclick="skin2()">Kup skina <br>Koszt = 10000</button><br>
+
+        <div>
+            <button class="button" id="przyciskkk" type="button" onclick="rebirth()">ULEPSZENIE</button>
+            Uleszenie obecnie kosztuje = <h id="kosztUleszenie">10</h>
+        </div>
+
+
+        <script>
+
+            var klik = 0; 
+            var klikPrzyrost = 1;
+            var kosztUlepszenia = 10;
+            var klikSkin1 = 0;
+            var klikSkin2 = 0;
+
+            //Główna funkcja klik = mamona
+            function oblicz() {
+                if(klik>-1) {
+                    klik += klikPrzyrost + klikSkin1 + klikSkin2;
+                    document.getElementById('przycisk').innerHTML = klik;
+                }
+            }
+
+            //Funkcja wyzerowania licznika
+            function zeruj() {
+                if(klik>0) {
+                    klik = 0;
+                    document.getElementById('przycisk').innerHTML = klik;
+                }
+            }
+
+            //Funkcja Ulepszenia | Rebirtha
+            function rebirth() {
+                if(klik >= kosztUlepszenia) {
+                    zeruj();
+                    klikPrzyrost += 1.5;
+                    kosztUlepszenia += kosztUlepszenia - ((kosztUlepszenia/100)*25);
+                    document.getElementById('kosztUleszenie').innerHTML = kosztUlepszenia;
+                } 
+            }
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+            //Kupienie skórki nr1
+            function skin1() {
+                if(klik >= 1000) {
+                    klik = klik - 1000;
+                    document.getElementById('przycisk').innerHTML = klik;
+                    klikSkin1 = 5;
+                    document.getElementById('przycisk').style.backgroundColor = "blue";
+                    document.getElementById('przycisk').style.borderRadius = "25px"
+                    event.target.parentNode.removeChild(event.target);
+                }
+                else {
+                    alert('Brakuje ci mamony biedaku');
+                }
+            }
+            //Kupienie skórki nr2
+            function skin2() {
+                if(klik >= 10000) {
+                    klik = klik - 10000;
+                    document.getElementById('przycisk').innerHTML = klik;
+                    klikSkin2 = 15;
+                    document.getElementById('przycisk').style.backgroundColor = "purple";
+                    event.target.parentNode.removeChild(event.target);
+                }
+                else {
+                    alert('Brakuje ci mamony biedaku');
+                }
+            }
+
+        </script>
+        
+        <!--Zrobione przez Użytkownika Oskarro1 oraz Sebe | Steve'a-->
+    </body>
+</html>
